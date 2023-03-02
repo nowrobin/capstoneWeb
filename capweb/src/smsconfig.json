@@ -1,0 +1,7 @@
+{
+  "apiKey": "API Key 입력",
+  "apiSecret": "API Secret 입력",
+  "from": "등록된 발신번호 입력",
+  "to": "",
+  "type": "SMS"
+}
