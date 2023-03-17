@@ -2,17 +2,24 @@ import { useState, useEffect } from "react";
 import React from "react";
 import RTCVideo from "../components/cam";
 
-export default function Mainpage() {
-  const [localStream, setLocalStream] = useState<MediaStream>();
+import axios from "axios";
 
-  useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-      setLocalStream(stream);
-    });
-  }, []);
+export default function Mainpage() {
+  // const coolsms = require("coolsms-node-sdk").default;
+  // const messageService = new coolsms(
+  //   "ENTER_YOUR_API_KEY",
+  //   "ENTER_YOUR_API_SECRET"
+  // );
 
   // <RTCVideo mediaStream={localStream} />
-  const onClick = (e: any) => {};
+  const sendRequest = async () => {
+    const response = await axios.get("http://localhost:8080");
+    console.log(response);
+    console.log(response.data);
+  };
+  const onClick = (e: any) => {
+    sendRequest();
+  };
 
   return (
     <div className="flex flex-row  w-max h-max gap-10">
@@ -22,7 +29,9 @@ export default function Mainpage() {
         alt="Video"
       />
       <div className="flex items-center justify-items-center">
-        <button className="w-32 h-14 bg-red-600 rounded-xl">Press</button>
+        <button className="w-32 h-14 bg-red-600 rounded-xl" onClick={onClick}>
+          응급상황 신고 버튼!
+        </button>
       </div>
     </div>
   );
